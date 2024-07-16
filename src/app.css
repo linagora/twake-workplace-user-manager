@@ -11,6 +11,10 @@ input::-webkit-credentials-auto-fill-button {
   right: 0;
 }
 
+input:-webkit-autofill {
+  -webkit-background-clip: text;
+}
+
 @layer utilities {
   .gradiant {
     background: linear-gradient(106deg,
