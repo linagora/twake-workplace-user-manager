@@ -1,4 +1,5 @@
 <script lang="ts">
+	import UsersList from '$components/lists/UsersList.svelte';
 	import { connectedUser } from '$store/user';
 	import type { PageData } from './$types';
 
@@ -8,10 +9,6 @@
 	$: connectedUser.set(currentUser);
 </script>
 
-<pre>
-
-  {#each usersList as user}
-		{user.cn}
-	{/each}
-  
-</pre>
+<div class="p-5 bg-white rounded shadow-xl w-full lg:px-10">
+	<UsersList users={usersList} />
+</div>
