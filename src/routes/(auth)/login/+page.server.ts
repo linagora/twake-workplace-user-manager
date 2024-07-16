@@ -5,7 +5,7 @@ import { zod } from 'sveltekit-superforms/adapters';
 import auth from '$services/auth';
 import logger from '$services/logger';
 import { extractMainDomain } from '$utils';
-import { redirect } from '@sveltejs/kit';
+import { redirect, type Redirect } from '@sveltejs/kit';
 
 export const load = (async ({ cookies }) => {
 	const cookie = cookies.get(auth.cookieName);
@@ -43,6 +43,10 @@ export const actions = {
 
 			redirect(302, '/');
 		} catch (error) {
+			if ((error as Redirect).location) {
+				throw error;
+			}
+
 			form.data.password = '';
 			logger.error('Login failed', { error });
 
