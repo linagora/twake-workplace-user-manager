@@ -36,8 +36,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tailwindcss/forms": "^0.5.7",
 		"ldapts": "^7.1.0",
 		"svelte-i18n": "^4.0.0",
+		"svelte-sonner": "^0.3.27",
 		"tslog": "^4.9.3"
 	}
 }
