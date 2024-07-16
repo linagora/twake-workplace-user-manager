@@ -1,13 +1,13 @@
 import { env } from '$env/dynamic/private';
 import logger from '$services/logger';
 import type { ILdapClient, SearchResult } from '$types';
-import ldapts from 'ldapts';
+import { Client, Change, Attribute } from 'ldapts';
 
 class LdapClient implements ILdapClient {
 	private base: string = '';
-	client: ldapts.Client | undefined;
+	client: Client | undefined;
 
-	public getClient = async (): Promise<ldapts.Client> => {
+	public getClient = async (): Promise<Client> => {
 		const { LDAP_ADMIN_PASSWORD, LDAP_BASE, LDAP_DN, LDAP_URL } = env;
 
 		if (!LDAP_ADMIN_PASSWORD || !LDAP_BASE || !LDAP_DN || !LDAP_URL) {
@@ -18,7 +18,7 @@ class LdapClient implements ILdapClient {
 		this.base = LDAP_BASE;
 
 		try {
-			const client = new ldapts.Client({
+			const client = new Client({
 				url: LDAP_URL
 			});
 
@@ -116,7 +116,7 @@ class LdapClient implements ILdapClient {
 			const client = await this.getClient();
 			const userDn = `cn=${dn},${this.base}`;
 
-			await client.add(userDn, entry as Record<string, string> | ldapts.Attribute[]);
+			await client.add(userDn, entry as Record<string, string> | Attribute[]);
 		} catch (error) {
 			logger.error('LDAP insert error', { error });
 			throw new Error('LDAP insert error');
@@ -132,7 +132,7 @@ class LdapClient implements ILdapClient {
 	 * @param change The change to perform
 	 * @throws {Error} - if the update fails
 	 */
-	update = async (dn: string, change: ldapts.Change): Promise<void> => {
+	update = async (dn: string, change: Change): Promise<void> => {
 		try {
 			const client = await this.getClient();
 			const userDn = `cn=${dn},${this.base}`;
