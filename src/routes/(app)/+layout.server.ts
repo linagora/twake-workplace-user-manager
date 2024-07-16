@@ -9,8 +9,11 @@ export const load = (async ({ cookies }) => {
 		redirect(302, '/login');
 	}
 
-	if (await auth.validateToken(cookie)) {
-		redirect(302, '/');
+	if (!(await auth.validateToken(cookie))) {
+		redirect(302, '/login');
 	}
-  
+
+	return {
+		cookie
+	};
 }) satisfies LayoutServerLoad;
