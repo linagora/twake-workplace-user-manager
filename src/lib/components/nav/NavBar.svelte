@@ -10,9 +10,11 @@
 		<TwpSmallLogo />
 	</div>
 	<div class="flex-0 flex gap-2 items-center justify-center">
-		<ConnectedUserDisplay name={$connectedUser.cn} />
-		<button type="button" class="hover:bg-gray-400/30  p-2 rounded-full">
-			<LogoutIcon />
-		</button>
+		{#if $connectedUser}
+			<ConnectedUserDisplay name={$connectedUser.cn} />
+			<button type="button" class="hover:bg-gray-400/30 p-2 rounded-full">
+				<LogoutIcon />
+			</button>
+		{/if}
 	</div>
 </nav>
