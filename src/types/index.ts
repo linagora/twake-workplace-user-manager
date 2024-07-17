@@ -40,6 +40,7 @@ export interface User {
 	displayName?: string;
 	mail?: string;
 	objectclass: 'inetOrgPerson';
+	pwdAccountLockedTime?: number;
 }
 
 export interface SessionResponse extends Omit<AuthAPIResponse, 'result'> {
@@ -47,6 +48,10 @@ export interface SessionResponse extends Omit<AuthAPIResponse, 'result'> {
 }
 
 export interface IUserService {
-	fetchUser: (uid: string) => Promise<User | null>;
+	fetchUser: (cn: string) => Promise<User | null>;
 	listUsers: () => Promise<User[]>;
+	disableUser: (cn: string) => Promise<void>;
+	enableUser: (cn: string) => Promise<void>;
 }
+
+export type usersStatusFilter = 'active' | 'inactive' | 'all';
