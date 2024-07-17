@@ -12,7 +12,7 @@
 	<title>Twake workplace user manager</title>
 </svelte:head>
 
-<div class="min-h-screen w-full bg-gray-300/40 overflow-hidden flex flex-col">
+<div class="min-h-screen w-full lg:bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% overflow-hidden flex flex-col">
 	<slot />
 	<Toaster />
 </div>
