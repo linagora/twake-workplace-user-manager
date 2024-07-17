@@ -4,7 +4,7 @@
 
 <div class="flex flex-col gap-2">
 	<NavBar />
-	<div class="lg:px-20 lg:py-10">
+	<div class="lg:px-24 lg:py-10">
 		<slot />
 	</div>
 </div>
