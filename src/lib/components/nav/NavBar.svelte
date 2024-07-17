@@ -5,14 +5,14 @@
 	import { connectedUser } from '$store';
 </script>
 
-<nav class="bg-gray-300/30 h-20 w-full p-5 shadow-xl flex">
+<nav class="bg-slate-50 h-20 w-full p-5 shadow-xl flex">
 	<div class="flex-1">
 		<TwpSmallLogo />
 	</div>
 	<div class="flex-0 flex gap-2 items-center justify-center">
 		{#if $connectedUser}
 			<ConnectedUserDisplay name={$connectedUser.cn} />
-			<button type="button" class="hover:bg-gray-400/30 p-2 rounded-full">
+			<button type="button" class="hover:bg-gray-400/30 p-2 rounded-full transition duration-450">
 				<LogoutIcon />
 			</button>
 		{/if}
