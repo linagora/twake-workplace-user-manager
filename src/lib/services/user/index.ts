@@ -2,6 +2,7 @@ import ldap from '$services/ldap';
 import logger from '$services/logger';
 import type { IUserService, User } from '$types';
 import { userAttributes } from '$utils';
+import { Attribute, Change } from 'ldapts';
 
 class UserService implements IUserService {
 	/**
@@ -36,6 +37,56 @@ class UserService implements IUserService {
 			return [];
 		}
 	};
+
+	/**
+	 * Disables a user in the LDAP directory
+	 *
+	 * @param {string} cn the common name of the user
+	 * @returns {Promise<void>}
+	 */
+	disableUser = async (cn: string): Promise<void> => {
+		try {
+			const modification = new Attribute({
+				type: 'pwdAccountLockedTime',
+				values: ['000001010000Z']
+			});
+
+			const change = new Change({
+				operation: 'replace',
+				modification
+			});
+
+			await ldap.update(cn, change);
+		} catch (error) {
+			logger.error('Failed to disable user from LDAP', { error });
+			throw error;
+		}
+	};
+
+  /**
+   * Enables a user in the LDAP directory
+   *
+   * @param {string} cn the common name of the user
+   * @returns {Promise<void>}
+   */
+  enableUser = async (cn: string): Promise<void> => {
+    try {
+      const modification = new Attribute({
+        type: 'pwdAccountLockedTime',
+        values: ['000001010000Z']
+      });
+
+      const change = new Change({
+        operation: 'delete',
+        modification
+      });
+
+      await ldap.update(cn, change);
+    } catch (error) {
+      logger.error('Failed to enable user from LDAP', { error });
+      throw error;
+    }
+  };
 }
 
 export default new UserService();
