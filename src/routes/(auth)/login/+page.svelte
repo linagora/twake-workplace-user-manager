@@ -23,7 +23,7 @@
 	});
 </script>
 
-<div class="w-full max-w-md p-6 m-auto mx-auto bg-white rounded-lg lg:shadow-xl flex flex-col">
+<div class="w-full max-w-lg p-6 m-auto mx-auto bg-white rounded lg:shadow-2xl flex flex-col">
 	<div class="flex justify-center lg:mx-auto">
 		<TwakeWorkplaceLogo />
 	</div>
