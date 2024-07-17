@@ -2,5 +2,11 @@
   "Username": "Nom d'utilisateur",
   "Password": "Mot de passe",
   "logged-in": "Connecté",
-  "Login": "Se connecter"
+  "Login": "Se connecter",
+  "All": "Tous",
+  "Active": "Actif",
+  "Inactive": "Inactif",
+  "search-placeholder": "Recherche par CN, SN, gaveName, mail, mobile",
+  "enable-user": "Activer",
+  "disable-user": "Désactiver"
 }

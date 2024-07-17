@@ -2,5 +2,11 @@
   "Username": "Username",
   "Password": "Password",
   "logged-in": "Logged in",
-  "Login": "Login"
+  "Login": "Login",
+  "All": "All",
+  "Active": "Active",
+  "Inactive": "Inactive",
+  "search-placeholder": "Search by CN, SN, givenName, mail, mobile",
+  "enable-user": "Enable",
+  "disable-user": "Disable"
 }

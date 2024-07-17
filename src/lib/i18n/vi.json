@@ -2,5 +2,11 @@
   "Username": "tên tài khoản",
   "Password": "Mật khẩu",
   "logged-in": "Đăng nhập",
-  "Login": "Đăng nhập"
+  "Login": "Đăng nhập",
+  "All": "Tất cả",
+  "Active": "Tích cực",
+  "Inactive": "Không hoạt động",
+  "search-placeholder": "Tìm kiếm theo CN, SN, GivenName, mail, di động",
+  "enable-user": "Cho phép",
+  "disable-user": "Vô hiệu hóa"
 }
