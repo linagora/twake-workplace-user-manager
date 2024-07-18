@@ -6,6 +6,7 @@ import auth from '$services/auth';
 import logger from '$services/logger';
 import { extractMainDomain } from '$utils';
 import { redirect, type Redirect } from '@sveltejs/kit';
+import User from '$services/user';
 
 export const load = (async ({ cookies }) => {
 	const cookie = cookies.get(auth.cookieName);
@@ -34,6 +35,22 @@ export const actions = {
 
 			if (!cookie) {
 				throw new Error('Invalid credentials');
+			}
+
+			const userId = await auth.fetchConnectedUser(cookie);
+
+			if (!userId) {
+				throw new Error('Invalid user session');
+			}
+
+			const user = await User.fetchUser(userId);
+
+			if (!user) {
+				throw new Error('Invalid user');
+			}
+
+			if (!user.dn.includes('ou=admin')) {
+				throw new Error('Forbidden');
 			}
 
 			cookies.set(auth.cookieName, cookie, {
