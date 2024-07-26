@@ -6,6 +6,9 @@ node_modules
 /.svelte-kit
 /build
 
+#LDAP
+ldap-data
+
 # OS
 .DS_Store
 Thumbs.db
