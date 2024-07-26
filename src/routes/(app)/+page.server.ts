@@ -37,7 +37,7 @@ export const actions = {
 				return setError(form, 'Invalid data');
 			}
 
-			await user.disableUser(form.data.cn);
+			await user.disableUser(form.data.cn.toLocaleLowerCase());
 
 			return { form };
 		} catch (error) {
@@ -54,7 +54,7 @@ export const actions = {
 				return setError(form, 'Invalid data');
 			}
 
-			await user.disableUser(form.data.cn);
+			await user.enableUser(form.data.cn.toLocaleLowerCase());
 
 			return { form };
 		} catch (error) {
