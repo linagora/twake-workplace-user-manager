@@ -226,18 +226,20 @@
 									</td>
 
 									<td class="px-4 py-2.5 text-sm whitespace-nowrap">
-										<div class="inline-flex rounded-md shadow-sm" role="group">
-											<EnableUserButton
-												disabled={!user.pwdAccountLockedTime}
-												loading={$submitting && $form.cn === user.cn}
-												handler={() => enable(user.cn)}
-											/>
-
-											<DisableUserButton
-												disabled={!!user.pwdAccountLockedTime}
-												loading={$submitting && $form.cn === user.cn}
-												handler={() => disable(user.cn)}
-											/>
+										<div class="flex rounded-md justify-end items-end" role="group">
+											{#if user.pwdAccountLockedTime}
+												<EnableUserButton
+													disabled={!user.pwdAccountLockedTime}
+													loading={$submitting && $form.cn === user.cn}
+													handler={() => enable(user.cn)}
+												/>
+											{:else}
+												<DisableUserButton
+													disabled={!!user.pwdAccountLockedTime}
+													loading={$submitting && $form.cn === user.cn}
+													handler={() => disable(user.cn)}
+												/>
+											{/if}
 										</div>
 									</td>
 								</tr>
