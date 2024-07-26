@@ -1,0 +1,34 @@
+
+services:
+  openldap:
+    image: bitnami/openldap
+    ports:
+      - '1389:1389'
+      - '1636:1636'
+    env_file:
+      - .env
+    volumes:
+      - ./ldap-data:/bitnami/openldap
+
+  llng:
+    image: yadd/lemonldap-ng-full
+    environment:
+      - LOGGER=stderr
+      - USERLOGGER=stderr
+    ports:
+      - 19876:19876
+      - 80:80
+    volumes:
+      - ./config/lmConf-1.json:/var/lib/lemonldap-ng/conf/lmConf-1.json
+    networks:
+      default:
+        aliases:
+          - auth.example.com
+
+networks:
+  user-management-network:
+    driver: bridge
+
+volumes:
+  openldap_data:
+    driver: local
