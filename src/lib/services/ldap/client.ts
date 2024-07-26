@@ -135,7 +135,7 @@ class LdapClient implements ILdapClient {
 	update = async (dn: string, change: Change): Promise<void> => {
 		try {
 			const client = await this.getClient();
-			const userDn = `cn=${dn},${this.base}`;
+			const userDn = `${dn},${this.base}`;
 
 			await client.modify(userDn, [change]);
 		} catch (error) {

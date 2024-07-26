@@ -56,7 +56,7 @@ class UserService implements IUserService {
 				modification
 			});
 
-			await ldap.update(cn, change);
+			await ldap.update(`cn=${cn},ou=users`, change);
 		} catch (error) {
 			logger.error('Failed to disable user from LDAP', { error });
 			throw error;
@@ -72,16 +72,16 @@ class UserService implements IUserService {
   enableUser = async (cn: string): Promise<void> => {
     try {
       const modification = new Attribute({
-        type: 'pwdAccountLockedTime',
-        values: ['000001010000Z']
-      });
+				type: 'pwdAccountLockedTime',
+				values: []
+			});
 
       const change = new Change({
         operation: 'delete',
         modification
       });
 
-      await ldap.update(cn, change);
+      await ldap.update(`cn=${cn},ou=users`, change);
     } catch (error) {
       logger.error('Failed to enable user from LDAP', { error });
       throw error;
