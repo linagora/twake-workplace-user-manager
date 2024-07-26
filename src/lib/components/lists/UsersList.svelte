@@ -151,7 +151,7 @@
 		<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:mx-0 w-full">
 			<div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 				<div class="overflow-hidden border border-gray-200 md:rounded-lg">
-					<table class="min-w-full divide-y divide-gray-200">
+					<table class="min-w-full divide-y divide-gray-200 table-fixed">
 						<thead class="bg-gray-50">
 							<tr>
 								<th
@@ -194,7 +194,11 @@
 									class="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
 									>mail</th
 								>
-
+								<th
+									scope="col"
+									class="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
+									>status</th
+								>
 								<th scope="col" class="relative py-3 px-4">
 									<span class="sr-only">Edit</span>
 								</th>
@@ -224,9 +228,12 @@
 									<td class="px-4 py-2.5 text-sm whitespace-nowrap">
 										{user.mail ?? ''}
 									</td>
+									<td class="px-4 py-2.5 text-sm whitespace-nowrap w-1/12 ">
+										{user.pwdAccountLockedTime ? $t('disabled') : $t('enabled')}
+									</td>
 
 									<td class="px-4 py-2.5 text-sm whitespace-nowrap">
-										<div class="flex rounded-md justify-end items-end" role="group">
+										<div class="flex rounded-md justify-end items-end w-full" role="group">
 											{#if user.pwdAccountLockedTime}
 												<EnableUserButton
 													disabled={!user.pwdAccountLockedTime}
