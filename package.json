@@ -31,11 +31,13 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.0.0-alpha.20",
+		"url": "^0.11.3",
 		"vite": "^5.0.3",
 		"zod": "^3.23.8"
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-node": "^5.2.0",
 		"@tailwindcss/forms": "^0.5.7",
 		"buffer": "^6.0.3",
 		"events": "^3.3.0",
