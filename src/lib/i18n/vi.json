@@ -8,5 +8,7 @@
   "Inactive": "Không hoạt động",
   "search-placeholder": "Tìm kiếm theo CN, SN, GivenName, mail, di động",
   "enable-user": "Cho phép",
-  "disable-user": "Vô hiệu hóa"
+  "disable-user": "Vô hiệu hóa",
+  "disabled": "bị vô hiệu hóa",
+  "enabled": "kích hoạt"
 }

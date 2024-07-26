@@ -8,5 +8,7 @@
   "Inactive": "Неактивный",
   "search-placeholder": "Поиск по CN, SN, имени, почте, мобильному телефону",
   "enable-user": "Давать возможность",
-  "disable-user": "Запрещать"
+  "disable-user": "Запрещать",
+  "disabled": "деактивирован",
+  "enabled": "активирован"
 }

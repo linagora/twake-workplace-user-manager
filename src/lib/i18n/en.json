@@ -8,5 +8,7 @@
   "Inactive": "Inactive",
   "search-placeholder": "Search by CN, SN, givenName, mail, mobile",
   "enable-user": "Enable",
-  "disable-user": "Disable"
+  "disable-user": "Disable",
+  "disabled": "deactivated",
+  "enabled": "activated"
 }

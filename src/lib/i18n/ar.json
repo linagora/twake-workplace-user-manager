@@ -8,5 +8,7 @@
   "Inactive": "غير نشط",
   "search-placeholder": "البحث عن طريق الاسم المحدد، البريد، الهاتف المحمول",
   "enable-user": "يُمكَِن",
-  "disable-user": "إبطال"
+  "disable-user": "إبطال",
+  "disabled": "معطل",
+  "enabled": "مفعل"
 }
