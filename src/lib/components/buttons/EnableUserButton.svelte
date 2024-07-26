@@ -12,9 +12,9 @@
 	{disabled}
 	on:click={handler}
 	type="button"
-	class="flex gap-2 items-center w-full max-w-[130px] justify-center px-4 py-2 text-sm font-medium {disabled
-		? 'text-white bg-slate-500'
-		: 'text-gray-900 bg-white hover:bg-gray-100 cursor-pointer shadow-xl'}"
+	class="flex gap-2 items-center w-full max-w-[130px] justify-center px-4 py-2 text-sm text-white font-medium {disabled
+		? ' bg-slate-500'
+		: ' bg-emerald-600 hover:bg-emerald-500/80 cursor-pointer shadow-xl'}"
 >
 	{#if loading}
 		<SpinnerIcon />
