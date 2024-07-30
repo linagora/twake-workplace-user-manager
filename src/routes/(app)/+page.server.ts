@@ -1,7 +1,7 @@
 import auth from '$services/auth';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import user from '$services/user';
+import User from '$services/user';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { toggleUserSchema } from '$schemas/user';
@@ -16,14 +16,18 @@ export const load = (async ({ parent }) => {
 		redirect(302, '/login');
 	}
 
-	const currentUser = await user.fetchUser(currentUserId);
+	const currentUser = await User.fetchUser(currentUserId);
 
 	if (!currentUser) {
 		redirect(302, '/login');
 	}
 
+	if (!currentUser.dn.includes('ou=admin')) {
+		redirect(302, '/login');
+	}
+
 	const form = await superValidate(zod(toggleUserSchema), { id: 'toggle-user' });
-	const usersList = await user.listUsers();
+	const usersList = await User.listUsers();
 
 	return { currentUser, usersList, form };
 }) satisfies PageServerLoad;
@@ -37,7 +41,7 @@ export const actions = {
 				return setError(form, 'Invalid data');
 			}
 
-			await user.disableUser(form.data.cn.toLocaleLowerCase());
+			await User.disableUser(form.data.cn.toLocaleLowerCase());
 
 			return { form };
 		} catch (error) {
@@ -54,7 +58,7 @@ export const actions = {
 				return setError(form, 'Invalid data');
 			}
 
-			await user.enableUser(form.data.cn.toLocaleLowerCase());
+			await User.enableUser(form.data.cn.toLocaleLowerCase());
 
 			return { form };
 		} catch (error) {

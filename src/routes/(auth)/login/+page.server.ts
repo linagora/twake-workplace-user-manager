@@ -12,7 +12,15 @@ export const load = (async ({ cookies }) => {
 	const cookie = cookies.get(auth.cookieName);
 
 	if (cookie && (await auth.validateToken(cookie))) {
-		redirect(302, '/');
+		const currentUserId = await auth.fetchConnectedUser(cookie);
+
+		if (currentUserId) {
+			const currentUser = await User.fetchUser(currentUserId);
+
+			if (currentUser && currentUser.dn.includes('ou=admin')) {
+				redirect(302, '/');
+			}
+		}
 	}
 
 	const form = await superValidate(zod(loginSchema));
