@@ -1,7 +1,7 @@
 import ldap from '$services/ldap';
 import logger from '$services/logger';
 import type { IUserService, User } from '$types';
-import { userAttributes } from '$utils';
+import { disableUserAttribute, enableUserAttribute, userAttributes } from '$utils';
 import { Attribute, Change } from 'ldapts';
 
 class UserService implements IUserService {
@@ -46,11 +46,7 @@ class UserService implements IUserService {
 	 */
 	disableUser = async (cn: string): Promise<void> => {
 		try {
-			const modification = new Attribute({
-				type: 'pwdAccountLockedTime',
-				values: ['000001010000Z']
-			});
-
+			const modification = new Attribute(disableUserAttribute);
 			const change = new Change({
 				operation: 'replace',
 				modification
@@ -63,30 +59,26 @@ class UserService implements IUserService {
 		}
 	};
 
-  /**
-   * Enables a user in the LDAP directory
-   *
-   * @param {string} cn the common name of the user
-   * @returns {Promise<void>}
-   */
-  enableUser = async (cn: string): Promise<void> => {
-    try {
-      const modification = new Attribute({
-				type: 'pwdAccountLockedTime',
-				values: []
+	/**
+	 * Enables a user in the LDAP directory
+	 *
+	 * @param {string} cn the common name of the user
+	 * @returns {Promise<void>}
+	 */
+	enableUser = async (cn: string): Promise<void> => {
+		try {
+			const modification = new Attribute(enableUserAttribute);
+			const change = new Change({
+				operation: 'delete',
+				modification
 			});
 
-      const change = new Change({
-        operation: 'delete',
-        modification
-      });
-
-      await ldap.update(`cn=${cn},ou=users`, change);
-    } catch (error) {
-      logger.error('Failed to enable user from LDAP', { error });
-      throw error;
-    }
-  };
+			await ldap.update(`cn=${cn},ou=users`, change);
+		} catch (error) {
+			logger.error('Failed to enable user from LDAP', { error });
+			throw error;
+		}
+	};
 }
 
 export default new UserService();
