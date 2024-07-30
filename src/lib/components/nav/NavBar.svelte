@@ -1,7 +1,7 @@
 <script lang="ts">
-	import LogoutIcon from '$components/icons/LogoutIcon.svelte';
 	import TwpSmallLogo from '$components/logos/TwpSmallLogo.svelte';
 	import ConnectedUserDisplay from '$components/user/ConnectedUserDisplay.svelte';
+	import LogoutUser from '$components/user/LogoutUser.svelte';
 	import { connectedUser } from '$store';
 </script>
 
@@ -9,12 +9,10 @@
 	<div class="flex-1">
 		<TwpSmallLogo />
 	</div>
-	<div class="flex-0 flex gap-2 items-center justify-center">
-		{#if $connectedUser}
+	{#if $connectedUser}
+		<div class="flex-0 flex gap-2 items-center justify-center" data-sveltekit-preload-data="false">
 			<ConnectedUserDisplay name={$connectedUser.cn} />
-			<button type="button" class="hover:bg-gray-400/30 p-2 rounded-full transition duration-450">
-				<LogoutIcon />
-			</button>
-		{/if}
-	</div>
+			<LogoutUser />
+		</div>
+	{/if}
 </nav>
