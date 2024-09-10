@@ -1,0 +1,19 @@
+name: Docker Build Main
+
+on:
+  workflow_call:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Publish to dockerhub
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
+          name: linagora/twake-workplace-user-manager
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          context: .
+          buildoptions: "-t linagora/twake-workplace-user-manager -f Dockerfile"
+          tags: "latest"
