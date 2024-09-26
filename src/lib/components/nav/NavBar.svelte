@@ -5,7 +5,7 @@
 	import { connectedUser } from '$store';
 </script>
 
-<nav class="bg-slate-50 h-20 w-full p-5 shadow-xl flex">
+<nav class="bg-slate-50 h-20 w-full p-5 lg:shadow-xl flex">
 	<div class="flex-1">
 		<TwpSmallLogo />
 	</div>
