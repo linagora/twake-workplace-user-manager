@@ -7,8 +7,8 @@
   "Active": "نشيط",
   "Inactive": "غير نشط",
   "search-placeholder": "البحث عن طريق الاسم المحدد، البريد، الهاتف المحمول",
-  "enable-user": "يُمكَِن",
-  "disable-user": "إبطال",
+  "enable-user": "ممكّن",
+  "disable-user": "عاجز",
   "disabled": "معطل",
   "enabled": "مفعل"
 }

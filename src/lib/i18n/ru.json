@@ -7,8 +7,8 @@
   "Active": "Активный",
   "Inactive": "Неактивный",
   "search-placeholder": "Поиск по CN, SN, имени, почте, мобильному телефону",
-  "enable-user": "Давать возможность",
-  "disable-user": "Запрещать",
+  "enable-user": "Включено",
+  "disable-user": "Неполноценный",
   "disabled": "деактивирован",
   "enabled": "активирован"
 }
