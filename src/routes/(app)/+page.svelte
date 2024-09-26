@@ -11,6 +11,6 @@
 	$: toggleForm.set(form);
 </script>
 
-<div class="py-5 bg-white rounded shadow-2xl w-full lg:px-2">
+<div class="py-5 bg-white rounded lg:shadow-2xl w-full lg:px-2">
 	<UsersList users={usersList} />
 </div>
