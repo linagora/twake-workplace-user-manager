@@ -76,23 +76,25 @@
 	<input type="hidden" name="cn" bind:value={$form.cn} />
 </form>
 
-<div class="w-full">
-	<div class="flex items-center gap-x-3">
-		<h2 class="text-lg font-medium text-gray-800 pl-8">LDAP users list</h2>
+<div class="w-full lg:px-5">
+	<div class="flex flex-row items-center justify-center md:justify-start gap-x-3">
+		<h2 class="text-lg font-medium text-gray-800">LDAP users list</h2>
 
 		<span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full"
 			>{users.length} users</span
 		>
 	</div>
 	<div
-		class="flex py-5 px-9 lg:py-2 lg:px-8 flex-col lg:flex-row items-start lg:items-center space-y-5 lg:space-y-0 justify-between w-full"
+		class="flex px-2 py-5 lg:py-2 lg:px-0 flex-col lg:flex-row lg:items-center items-start space-y-5 lg:space-y-0 justify-between w-full"
 	>
-		<div class="flex flex-row overflow-hidden bg-white border divide-x rounded-lg">
+		<div
+			class="flex flex-row overflow-hidden bg-white border divide-x rounded-lg w-full lg:w-auto lg:min-w-96"
+		>
 			<button
 				on:click={() => {
 					changeTab('all');
 				}}
-				class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 {statusFilter ===
+				class="px-5 w-full py-2 text-xs font-medium text-gray-600 transition-colors duration-200 {statusFilter ===
 				'all'
 					? 'bg-gray-100'
 					: ''} sm:text-sm"
@@ -103,7 +105,7 @@
 				on:click={() => {
 					changeTab('active');
 				}}
-				class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 {statusFilter ===
+				class="px-5 py-2 w-full text-xs font-medium text-gray-600 transition-colors duration-200 {statusFilter ===
 				'active'
 					? 'bg-gray-100'
 					: ''} sm:text-sm hover:bg-gray-100"
@@ -119,7 +121,7 @@
 				on:click={() => {
 					changeTab('inactive');
 				}}
-				class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 {statusFilter ===
+				class="px-5 py-2 w-full text-xs font-medium text-gray-600 transition-colors duration-200 {statusFilter ===
 				'inactive'
 					? 'bg-gray-100'
 					: ''} sm:text-sm hover:bg-gray-100"
@@ -134,24 +136,24 @@
 		</div>
 		<div class="w-full md:w-auto md:pb-0">
 			<div class="flex items-center mt-0 h-6 relative w-full">
-				<button class="absolute right-0 focus:outline-none">
+				<button class="absolute left-0 focus:outline-none">
 					<SearchIcon />
 				</button>
 				<input
 					bind:value={search}
 					placeholder={$t('search-placeholder')}
 					type="text"
-					class="block w-full py-1.5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-[500px] placeholder-gray-400/70 pl-3 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+					class="block w-full pl-10 py-1.5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-[500px] placeholder-gray-400/70 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
 				/>
 			</div>
 		</div>
 	</div>
 
-	<div class="flex flex-col w-full">
-		<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:mx-0 w-full">
-			<div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-				<div class="overflow-hidden border border-gray-200 md:rounded-lg">
-					<table class="min-w-full divide-y divide-gray-200 table-fixed">
+	<div class="flex flex-col w-full px-1 lg:px-0">
+		<div class="overflow-x-auto w-full">
+			<div class="inline-block min-w-full py-2 align-middle">
+				<div class="overflow-clip border border-gray-200 md:rounded-lg">
+					<table class="min-w-full divide-y divide-gray-200">
 						<thead class="bg-gray-50">
 							<tr>
 								<th
@@ -194,11 +196,6 @@
 									class="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
 									>mail</th
 								>
-								<th
-									scope="col"
-									class="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
-									>status</th
-								>
 								<th scope="col" class="relative py-3 px-4">
 									<span class="sr-only">Edit</span>
 								</th>
@@ -228,11 +225,9 @@
 									<td class="px-4 py-2.5 text-sm whitespace-nowrap">
 										{user.mail ?? ''}
 									</td>
-									<td class="px-4 py-2.5 text-sm whitespace-nowrap w-1/12 ">
-										{user.pwdAccountLockedTime ? $t('disabled') : $t('enabled')}
-									</td>
-
-									<td class="px-4 py-2.5 text-sm whitespace-nowrap">
+									<td
+										class="px-4 py-2.5 text-sm whitespace-nowrap sticky right-0 bg-white/80 lg:bg-transparent"
+									>
 										<div class="flex rounded-md justify-end items-end w-full" role="group">
 											{#if user.pwdAccountLockedTime}
 												<EnableUserButton
