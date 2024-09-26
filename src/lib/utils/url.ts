@@ -13,11 +13,17 @@ export const getUrl = (url: string): string => (url.endsWith('/') ? url : `${url
  * @returns {string} The extracted domain name.
  */
 export const extractMainDomain = (domain: string): string => {
-	if ((domain.match(/\./g) || []).length === 1) {
-		return domain;
+	const domainWithoutPort = domain.split(':')[0];
+
+	if (/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(domainWithoutPort)) {
+		return domainWithoutPort;
 	}
 
-	const firstDotIndex = domain.indexOf('.');
+	const parts = domainWithoutPort.split('.');
 
-	return domain.substring(firstDotIndex + 1);
+	if (parts.length <= 2) {
+		return domainWithoutPort;
+	}
+
+	return parts.slice(-2).join('.');
 };
